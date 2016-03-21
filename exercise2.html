@@ -1,16 +1,38 @@
 <html>
 	<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript">
-		var dict = {};
-		dict["exercise"] = ['walking', 'running', 'biking'];
-		dict["math"] = ['algebra', 'trigonometry', 'calculus'];
-		dict["month"] = 3;
-		dict[4] = 6;
-		console.log(dict["exercise"]);
-		console.log(dict["exercise"][1]);
-		console.log(dict["math"]);
-		console.log(dict["month"]);
-		console.log(dict[4]);
+		var topic_arr = {};
+		var description_dict = {};
+			function addTask(topic, description) {
+			topic_arr.push(topic);
+			description_dict[topic] = description
+		}
+		addTask("Study for math",["Chaper 1 & 2", "Study last year's Regents"]  )
+		
+			$(document).ready(function() {
+			var ul_body = $("<ul>");
+			ul_body.appendTo('body');
+
+			for(var i = 0; i < topic_arr.length; i++) {
+				var topic = topic_arr[i]
+				var li = $("<li>", 
+					{
+						text: topic
+					});
+				li.appendTo(ul_body);
+
+				var d = description_dict[topic];
+				var ul = $("<ul>");
+				ul.appendTo(li);
+				for(var j = 0; j < d.length; j++) {
+					li = $("<li>", 
+					{
+						text: d[j]
+					});
+					li.appendTo(ul);
+				}
+			}
+		});
 	</script>
 	<body>
 	</body>
